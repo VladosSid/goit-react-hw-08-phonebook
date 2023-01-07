@@ -30,6 +30,7 @@ export function Nav() {
               </BreadcrumbLink>
             </b>
           </BreadcrumbItem>
+
           <BreadcrumbItem fontSize="28px" color="rgb(106, 17, 145)">
             <b>
               <BreadcrumbLink as={NavLink} to="/contacts">

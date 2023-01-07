@@ -1,23 +1,36 @@
-import { List, ListItem } from '@chakra-ui/react';
+import { List, ListItem, Link, Flex } from '@chakra-ui/react';
+import { NavLink, Outlet } from 'react-router-dom';
 
 import ButtonAuth from 'style/Button/ButtonComponent';
 
 export function Authorization() {
   return (
-    <List
-      display="flex"
-      flexDirection="row"
-      gap="20px"
-      w="100%"
-      justifyContent="space-around"
-    >
-      <ListItem>
-        <ButtonAuth>SingIn</ButtonAuth>
-      </ListItem>
-      <ListItem>
-        <ButtonAuth>LogIn</ButtonAuth>
-      </ListItem>
-    </List>
+    <Flex direction="column" align="center" gap="20px">
+      <List
+        display="flex"
+        flexDirection="row"
+        gap="80px"
+        w="100%"
+        justifyContent="space-around"
+      >
+        <ListItem>
+          <ButtonAuth>
+            <Link as={NavLink} to="SingIn">
+              SingIn
+            </Link>
+          </ButtonAuth>
+        </ListItem>
+        <ListItem>
+          <ButtonAuth>
+            <Link as={NavLink} to="LogIn">
+              LogIn
+            </Link>
+          </ButtonAuth>
+        </ListItem>
+      </List>
+
+      <Outlet />
+    </Flex>
   );
 }
 export default Authorization;

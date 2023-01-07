@@ -5,7 +5,7 @@ export const ButtonAuth = defineStyleConfig({
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',
-    background: 'rgb(249, 104, 1)',
+    background: 'rgb(106, 17, 145)',
     alignItems: 'center',
     fontSize: '28px',
     // gap: 6,

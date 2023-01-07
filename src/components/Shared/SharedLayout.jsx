@@ -9,7 +9,7 @@ export function SharedLayout() {
   return (
     <>
       <Nav />
-      <Flex pl="15px" pr="15px">
+      <Flex pl="15px" pr="15px" justify="center">
         <Outlet />
       </Flex>
     </>
