@@ -7,7 +7,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { store } from './redux/store';
 import { App } from 'components/App';
 
-import { theme } from './style/baseStyledChakra';
+import { theme } from './style/themeAll';
 
 import './index.css';
 

@@ -1,5 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import { Flex, List, ListItem, Text, Link } from '@chakra-ui/react';
+import {
+  Flex,
+  Text,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+} from '@chakra-ui/react';
+
+import LinkNav from '../../style/NavLinks/NavLinkComponent';
 
 export function Nav() {
   return (
@@ -14,40 +22,26 @@ export function Nav() {
         mb="20px"
         h="80px"
       >
-        <nav>
-          <List flex-direction="row" display="flex" gap="20px">
-            <ListItem fontSize="28px" color="rgb(106, 17, 145)">
-              <b>
-                <Link as={NavLink} to="/">
-                  Home
-                </Link>
-              </b>
-            </ListItem>
-            <ListItem fontSize="28px" color="rgb(106, 17, 145)">
-              <b>
-                <Link as={NavLink} to="/contacts">
-                  Contacts
-                </Link>
-              </b>
-            </ListItem>
-          </List>
-        </nav>
-        <List flex-direction="row" display="flex" gap="20px">
-          <ListItem fontSize="28px" color="rgb(106, 17, 145)">
+        <Breadcrumb>
+          <BreadcrumbItem fontSize="28px" color="rgb(106, 17, 145)">
             <b>
-              <Link as={NavLink} to="">
-                Register
-              </Link>
+              <BreadcrumbLink as={NavLink} to="/">
+                Home
+              </BreadcrumbLink>
             </b>
-          </ListItem>
-          <ListItem fontSize="28px" color="rgb(106, 17, 145)">
+          </BreadcrumbItem>
+          <BreadcrumbItem fontSize="28px" color="rgb(106, 17, 145)">
             <b>
-              <Link as={NavLink} to="">
-                Login
-              </Link>
+              <BreadcrumbLink as={NavLink} to="/contacts">
+                Contacts
+              </BreadcrumbLink>
             </b>
-          </ListItem>
-        </List>
+          </BreadcrumbItem>
+        </Breadcrumb>
+
+        <LinkNav as={NavLink} to="/authorization">
+          Authorization
+        </LinkNav>
 
         <Text fontSize="20px">Welcome, NameUser</Text>
       </Flex>
