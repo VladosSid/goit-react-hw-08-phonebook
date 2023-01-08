@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Heading, FormControl, Button, FormLabel } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { authOperations } from 'redux/auth';
 
