@@ -12,17 +12,29 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [authOperations.register.fulfilled](state, action) {},
+    [authOperations.register.fulfilled](state, action) {
+      state.user = { ...action.payload.user };
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
     [authOperations.register.rejected](state, action) {
       state.error = action.payload;
     },
 
-    [authOperations.logIn.fulfilled](state, action) {},
+    [authOperations.logIn.fulfilled](state, action) {
+      state.user = { ...action.payload.user };
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
     [authOperations.logIn.rejected](state, action) {
       state.error = action.payload;
     },
 
-    [authOperations.logOut.fulfilled](state, action) {},
+    [authOperations.logOut.fulfilled](state) {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
+    },
     [authOperations.logOut.rejected](state, action) {
       state.error = action.payload;
     },
@@ -34,4 +46,4 @@ export const authSlice = createSlice({
   },
 });
 
-export const authReducer = authSlice.reducer;
+export default authSlice.reducer;

@@ -17,14 +17,10 @@ const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     console.log(userData);
     try {
-      const { data } = await axios.post('/users/signup', {
-        name: 'Adrian Crosss',
-        email: 'acrosss@mail.com',
-        password: 'examplepwd12345',
-      });
-      // token.set(data.token);
+      const { data } = await axios.post('/users/signup', userData);
+      token.set(data.token);
       console.log(data);
-      // return data;
+      return data;
     } catch (error) {
       console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
@@ -36,9 +32,12 @@ const logIn = createAsyncThunk('auth/logIn', async (userData, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', userData);
     token.set(data.token);
+    console.log(data);
     return data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    console.log(error.message);
+
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -48,7 +47,7 @@ const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
     token.set(data.token);
     return data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -67,7 +66,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('user/carrent');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
