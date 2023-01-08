@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
 
 import SharedLayout from './Shared';
-import Home from 'pages/Home';
-import Contacts from 'pages/Contacts';
-import Authorization from 'pages/Authorization';
-import SingIn from './Authorization/SingIn';
-import LogIn from './Authorization/LogIn';
+
+const Home = lazy(() => import('pages/Home'));
+const Contacts = lazy(() => import('pages/Contacts'));
+const Authorization = lazy(() => import('pages/Authorization'));
+const SingIn = lazy(() => import('./Authorization/SingIn'));
+const LogIn = lazy(() => import('./Authorization/LogIn'));
 
 export const App = () => {
   return (

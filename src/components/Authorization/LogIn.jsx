@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Heading, FormControl, FormLabel, Button } from '@chakra-ui/react';
 
-import Password from './PasswordInput';
+import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
 
 export function LogIn() {
@@ -14,28 +14,30 @@ export function LogIn() {
         LogIn
       </Heading>
       <FormControl>
-        <FormLabel>Email</FormLabel>
-        <EmailInput
-          onChange={setEmail}
-          value={email}
-          name={'email'}
-          variant={'filled'}
-        />
+        <form>
+          <FormLabel>Email</FormLabel>
+          <EmailInput
+            onChange={setEmail}
+            value={email}
+            name={'email'}
+            variant={'filled'}
+          />
 
-        <FormLabel>Password</FormLabel>
-        <Password
-          onChenge={setPassword}
-          name={'password'}
-          value={password}
-          variant={'unstyled'}
-        />
+          <FormLabel>Password</FormLabel>
+          <PasswordInput
+            onChenge={setPassword}
+            name={'password'}
+            value={password}
+            variant={'unstyled'}
+          />
 
-        <Button
-          disabled={password === '' ?? (email === '' && 'disabled')}
-          type="submit"
-        >
-          SingIn
-        </Button>
+          <Button
+            type="submit"
+            disabled={password === '' ?? (email === '' && 'disabled')}
+          >
+            SingIn
+          </Button>
+        </form>
       </FormControl>
     </>
   );

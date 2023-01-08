@@ -7,7 +7,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-export const Password = ({ onChenge, name, value, variant }) => {
+export const PasswordInput = ({ onChenge, name, value, variant }) => {
   const [showPass, setShowPass] = useState(false);
 
   const handleClickPass = () => setShowPass(!showPass);
@@ -39,4 +39,4 @@ export const Password = ({ onChenge, name, value, variant }) => {
   );
 };
 
-export default Password;
+export default PasswordInput;

@@ -8,7 +8,6 @@ export const ButtonAuth = defineStyleConfig({
     background: 'rgb(106, 17, 145)',
     alignItems: 'center',
     fontSize: '28px',
-    // gap: 6,
     color: 'white',
   },
   // Two variants: rounded and smooth

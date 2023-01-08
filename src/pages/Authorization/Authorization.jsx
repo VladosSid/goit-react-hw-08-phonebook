@@ -1,5 +1,6 @@
 import { List, ListItem, Link, Flex } from '@chakra-ui/react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 import ButtonAuth from 'style/Button/ButtonComponent';
 
@@ -29,7 +30,9 @@ export function Authorization() {
         </ListItem>
       </List>
 
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </Flex>
   );
 }
