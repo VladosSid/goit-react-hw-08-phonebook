@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { Heading, FormControl, FormLabel, Button } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
 
 import { authOperations } from 'redux/auth';
 
 import PasswordInput from './PasswordInput';
 import EmailInput from './EmailInput';
+
+const schema = yup.object().shape({
+  email: yup.string().email().required().trim(),
+  password: yup.string().min(7).required().trim(),
+});
 
 export function LogIn() {
   const dispatch = useDispatch();
@@ -16,7 +22,22 @@ export function LogIn() {
   const submitUser = e => {
     e.preventDefault();
     const user = { email, password };
-    dispatch(authOperations.logIn(user));
+
+    schema
+      .isValid({
+        email,
+        password,
+      })
+      .then(function (valid) {
+        if (valid) {
+          dispatch(authOperations.logIn(user));
+
+          return;
+        }
+        console.log(
+          'Не верный формат данных!!! Пароль должен быть 7+ символов, пароли должны совпадать!!!'
+        );
+      });
   };
 
   return (

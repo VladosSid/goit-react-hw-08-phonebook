@@ -37,10 +37,10 @@ const removeContacts = createAsyncThunk(
   }
 );
 
-const options = {
+const operations = {
   fetchContacts,
   addContacts,
   removeContacts,
 };
 
-export default options;
+export default operations;

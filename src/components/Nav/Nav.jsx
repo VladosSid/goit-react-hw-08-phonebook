@@ -1,15 +1,19 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
   Flex,
-  Text,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
 } from '@chakra-ui/react';
 
+import { authSelectors } from 'redux/auth';
 import LinkNav from '../../style/NavLinks/NavLinkComponent';
+import UserMenu from 'components/UserMenu';
 
 export function Nav() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   return (
     <Flex direction="column">
       <Flex
@@ -40,11 +44,13 @@ export function Nav() {
           </BreadcrumbItem>
         </Breadcrumb>
 
-        <LinkNav as={NavLink} to="/authorization">
-          Authorization
-        </LinkNav>
-
-        <Text fontSize="20px">Welcome, NameUser</Text>
+        {isLoggedIn ? (
+          <UserMenu />
+        ) : (
+          <LinkNav as={NavLink} to="/authorization">
+            Authorization
+          </LinkNav>
+        )}
       </Flex>
     </Flex>
   );
