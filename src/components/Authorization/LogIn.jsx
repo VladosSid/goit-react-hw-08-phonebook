@@ -57,10 +57,12 @@ export function LogIn() {
 
           <FormLabel>Password</FormLabel>
           <PasswordInput
-            onChenge={setPassword}
+            onChange={setPassword}
             name={'password'}
             value={password}
             variant={'unstyled'}
+            type={'password'}
+            show={true}
           />
 
           <Button

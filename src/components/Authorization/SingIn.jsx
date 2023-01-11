@@ -71,18 +71,22 @@ export function SingIn() {
 
           <FormLabel>Password</FormLabel>
           <PasswordInput
-            onChenge={setPassword}
+            onChange={setPassword}
             name={'password'}
             value={password}
             variant={'flushed'}
+            type={'password'}
+            show={true}
           />
 
           <FormLabel>Password</FormLabel>
           <PasswordInput
-            onChenge={setPasswordCheck}
+            onChange={setPasswordCheck}
             name={'passwordCheck'}
             value={passwordCheck}
             variant={'unstyled'}
+            type={'password'}
+            show={true}
           />
 
           <Button
