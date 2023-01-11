@@ -39,7 +39,11 @@ export const authSlice = createSlice({
       state.error = action.payload;
     },
 
-    [authOperations.fetchCurrentUser.fulfilled](state, action) {},
+    [authOperations.fetchCurrentUser.fulfilled](state, action) {
+      // console.log(action.payload);
+      state.user = { ...action.payload };
+      state.isLoggedIn = true;
+    },
     [authOperations.fetchCurrentUser.rejected](state, action) {
       state.error = action.payload;
     },

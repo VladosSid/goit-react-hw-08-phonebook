@@ -1,25 +1,12 @@
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-} from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent } from '@chakra-ui/react';
 
 import { FormAddContacts } from './FormAddContact/FormAddContacts';
 
-export function ModalEl({ isOpen, onClose }) {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-
+export function ModalEl({ isOpen, onClose, children }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
-        <FormAddContacts onClose={onClose} />
-      </ModalContent>
+      <ModalContent>{children}</ModalContent>
     </Modal>
   );
 }

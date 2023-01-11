@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import {
   ModalHeader,
   ModalFooter,
@@ -9,10 +11,18 @@ import {
 
 import { EmailInput } from 'components/Authorization/EmailInput/EmailInput';
 import { PasswordInput } from 'components/Authorization/PasswordInput/PasswordInput';
+import { contactsOperations } from 'redux/contacts';
 
-export function FormAddContacts({ onClose }) {
+export function FormAddContacts() {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const sendContsct = e => {
+    e.preventDefault();
+    console.log(e.target);
+    dispatch(contactsOperations.addContacts({ name, number }));
+  };
 
   return (
     <>
@@ -37,10 +47,9 @@ export function FormAddContacts({ onClose }) {
       </ModalBody>
 
       <ModalFooter>
-        <Button colorScheme="blue" mr={3} onClick={onClose}>
-          Close
+        <Button variant="ghost" onClick={sendContsct}>
+          Send contact
         </Button>
-        <Button variant="ghost">Send contact</Button>
       </ModalFooter>
     </>
   );

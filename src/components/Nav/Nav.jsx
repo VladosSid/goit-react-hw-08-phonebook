@@ -1,17 +1,25 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   Flex,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Button,
+  useDisclosure,
 } from '@chakra-ui/react';
 
 import { authSelectors } from 'redux/auth';
 import LinkNav from '../../style/NavLinks/NavLinkComponent';
 import UserMenu from 'components/UserMenu';
+import ModalEl from 'components/ModalEl';
+import FormAddContacts from 'components/ModalEl/FormAddContact';
 
 export function Nav() {
+  const { onOpen, isOpen, onClose } = useDisclosure({ id: 'addContacts' });
+
+  const match = useMatch('/contacts');
+
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
@@ -43,6 +51,13 @@ export function Nav() {
             </b>
           </BreadcrumbItem>
         </Breadcrumb>
+
+        {match ? <Button onClick={onOpen}>Add contact</Button> : null}
+        <ModalEl
+          isOpen={isOpen}
+          onClose={onClose}
+          children={<FormAddContacts />}
+        />
 
         {isLoggedIn ? (
           <UserMenu />

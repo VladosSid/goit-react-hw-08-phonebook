@@ -1,7 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 
 import SharedLayout from './Shared';
+import { authOperations } from 'redux/auth';
+import { useDispatch } from 'react-redux';
 
 const Home = lazy(() => import('pages/Home'));
 const Contacts = lazy(() => import('pages/Contacts'));
@@ -10,6 +12,12 @@ const SingIn = lazy(() => import('./Authorization/SingIn'));
 const LogIn = lazy(() => import('./Authorization/LogIn'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>

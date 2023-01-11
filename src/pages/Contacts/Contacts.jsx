@@ -1,28 +1,19 @@
-import {
-  Heading,
-  FormControl,
-  FormLabel,
-  Flex,
-  Button,
-  useDisclosure,
-  // Modal,
-  // ModalOverlay,
-  // ModalContent,
-  // ModalHeader,
-  // ModalCloseButton,
-  // ModalBody,
-  // Lorem,
-  // ModalFooter,
-} from '@chakra-ui/react';
-import { useState } from 'react';
-import { contactsOperations } from 'redux/contacts';
-import { ModalEl } from 'components/ModalEl//ModalEl';
+import { Heading, FormControl, FormLabel, Flex } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import { useDispatch, useSelector } from 'react-redux';
 
 import EmailInput from 'components/Authorization/EmailInput';
 
 export function Contacts() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+  const contacts = useSelector(contactsSelectors.allContacts);
+  console.log(contacts);
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts());
+  }, []);
 
   const searchContact = () => {
     console.log(search);
@@ -31,10 +22,6 @@ export function Contacts() {
   return (
     <Flex direction="column" align="center" justify="center" gap="20px">
       <Heading as="h1">Contacts</Heading>
-
-      <Button onClick={onOpen}>Add contact</Button>
-
-      <ModalEl isOpen={isOpen} onClose={onClose} />
 
       <FormControl>
         <form>

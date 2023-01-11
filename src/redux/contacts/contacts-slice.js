@@ -10,18 +10,22 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   extraReducers: {
-    [contactsOperations.fetchContacts.fulfilled](state, action) {},
     [contactsOperations.fetchContacts.fulfilled](state, action) {
-      state.error = action.payload;
+      state.contacts = action.payload;
+    },
+    [contactsOperations.fetchContacts.rejected](state, action) {
+      // state.error = action.payload;
     },
 
-    [contactsOperations.addContacts.fulfilled](state, action) {},
+    [contactsOperations.addContacts.fulfilled](state, action) {
+      // console.log(action.payload);
+    },
     [contactsOperations.addContacts.rejected](state, action) {
       state.error = action.payload;
     },
 
     [contactsOperations.removeContacts.fulfilled](state, action) {},
-    [contactsOperations.removeContacts.fulfilled](state, action) {
+    [contactsOperations.removeContacts.rejected](state, action) {
       state.error = action.payload;
     },
   },
