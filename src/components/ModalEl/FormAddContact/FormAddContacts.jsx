@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Notiflix from 'notiflix';
 
 import {
   ModalHeader,
@@ -11,17 +12,33 @@ import {
 
 import { EmailInput } from 'components/Authorization/EmailInput/EmailInput';
 import { PasswordInput } from 'components/Authorization/PasswordInput/PasswordInput';
-import { contactsOperations } from 'redux/contacts';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
 export function FormAddContacts() {
   const dispatch = useDispatch();
+  const contacts = useSelector(contactsSelectors.allContacts);
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const sendContsct = e => {
-    e.preventDefault();
-    console.log(e.target);
+  const sendContsct = () => {
     dispatch(contactsOperations.addContacts({ name, number }));
+    setName('');
+    setNumber('');
+  };
+
+  const checkMatches = e => {
+    e.preventDefault();
+
+    const normalizedFilter = name.toLocaleLowerCase();
+
+    const checkName = contacts.some(
+      contact => contact.name.toLocaleLowerCase() === normalizedFilter
+    );
+
+    checkName
+      ? Notiflix.Notify.failure(`${name} is already in contacts.`)
+      : sendContsct();
   };
 
   return (
@@ -47,7 +64,7 @@ export function FormAddContacts() {
       </ModalBody>
 
       <ModalFooter>
-        <Button variant="ghost" onClick={sendContsct}>
+        <Button variant="ghost" onClick={checkMatches}>
           Send contact
         </Button>
       </ModalFooter>

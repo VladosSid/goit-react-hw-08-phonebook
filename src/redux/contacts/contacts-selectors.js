@@ -1,4 +1,4 @@
-const allContacts = state => state.contacts;
+const allContacts = state => state.contacts.contacts;
 
 const contactsSelectors = {
   allContacts,

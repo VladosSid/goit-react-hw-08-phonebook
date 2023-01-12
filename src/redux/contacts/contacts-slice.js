@@ -14,17 +14,21 @@ const contactsSlice = createSlice({
       state.contacts = action.payload;
     },
     [contactsOperations.fetchContacts.rejected](state, action) {
-      // state.error = action.payload;
+      state.error = action.payload;
     },
 
     [contactsOperations.addContacts.fulfilled](state, action) {
-      // console.log(action.payload);
+      state.contacts = [action.payload, ...state.contacts];
     },
     [contactsOperations.addContacts.rejected](state, action) {
       state.error = action.payload;
     },
 
-    [contactsOperations.removeContacts.fulfilled](state, action) {},
+    [contactsOperations.removeContacts.fulfilled](state, action) {
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== action.payload.id
+      );
+    },
     [contactsOperations.removeContacts.rejected](state, action) {
       state.error = action.payload;
     },

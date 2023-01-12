@@ -1,29 +1,40 @@
-import { Heading, FormControl, FormLabel, Flex } from '@chakra-ui/react';
+import {
+  Heading,
+  FormControl,
+  FormLabel,
+  Flex,
+  OrderedList,
+  ListItem,
+} from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { useDispatch, useSelector } from 'react-redux';
 
 import EmailInput from 'components/Authorization/EmailInput';
 
+import ContactItem from 'components/Contacts';
+
 export function Contacts() {
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.allContacts);
-  console.log(contacts);
+
   const [search, setSearch] = useState('');
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
-  }, []);
+  }, [dispatch]);
 
-  const searchContact = () => {
-    console.log(search);
+  const removeContacts = id => {
+    dispatch(contactsOperations.removeContacts(id));
   };
 
   return (
     <Flex direction="column" align="center" justify="center" gap="20px">
-      <Heading as="h1">Contacts</Heading>
+      <Heading as="h1" size="2xl">
+        Contacts
+      </Heading>
 
-      <FormControl>
+      <FormControl width="400px">
         <form>
           <FormLabel>Search Contacts</FormLabel>
           <EmailInput
@@ -35,10 +46,33 @@ export function Contacts() {
         </form>
       </FormControl>
 
-      <h2>Contacts List</h2>
-      <ul>
-        {/* {contacts.map({name, number, id} => <contactItem name={name} number={number} id={id} />)} */}
-      </ul>
+      <Heading as="h2" size="lg">
+        Contacts List
+      </Heading>
+      <OrderedList display="flex" flexDirection="column" gap="10px">
+        {contacts !== []
+          ? contacts
+              .filter(contact =>
+                contact.name.toLowerCase().includes(search.toLocaleLowerCase())
+              )
+              .map(({ name, number, id }) => (
+                <ListItem
+                  display="flex"
+                  justifyContent="space-between"
+                  direction="row"
+                  gap="20px"
+                  key={id}
+                >
+                  <ContactItem
+                    name={name}
+                    number={number}
+                    id={id}
+                    remove={removeContacts}
+                  />
+                </ListItem>
+              ))
+          : null}
+      </OrderedList>
     </Flex>
   );
 }
