@@ -1,6 +1,6 @@
 import { Button, Text, Flex } from '@chakra-ui/react';
 
-export function ContactItem({ id, name, number, remove }) {
+export function ContactItems({ id, name, number, remove }) {
   return (
     <>
       <Text fontSize="2xl">{name}:</Text>
@@ -16,4 +16,4 @@ export function ContactItem({ id, name, number, remove }) {
   );
 }
 
-export default ContactItem;
+export default ContactItems;
