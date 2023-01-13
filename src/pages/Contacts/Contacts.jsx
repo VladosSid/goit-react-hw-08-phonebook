@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import EmailInput from 'components/Authorization/EmailInput';
 
-import ContactItem from 'components/Contacts';
+import ContactItems from 'components/Contacts';
 
 export function Contacts() {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ export function Contacts() {
                   gap="20px"
                   key={id}
                 >
-                  <ContactItem
+                  <ContactItems
                     name={name}
                     number={number}
                     id={id}
