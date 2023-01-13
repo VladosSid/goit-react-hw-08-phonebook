@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/387.eac73db6.chunk.js","mappings":"iMAIA,MAJO,WACL,OAAO,mCACR,C","sources":["pages/Contacts/Contacts.jsx"],"sourcesContent":["export function Contacts() {\n  return <b>Contacts</b>;\n}\n\nexport default Contacts;\n"],"names":[],"sourceRoot":""}
