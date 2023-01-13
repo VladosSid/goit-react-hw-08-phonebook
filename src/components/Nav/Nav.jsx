@@ -21,6 +21,7 @@ export function Nav() {
   const match = useMatch('/contacts');
 
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const istGetingCurentUser = useSelector(authSelectors.getGetingCurentUser);
 
   return (
     <Flex direction="column">
@@ -43,13 +44,15 @@ export function Nav() {
             </b>
           </BreadcrumbItem>
 
-          <BreadcrumbItem fontSize="28px" color="rgb(106, 17, 145)">
-            <b>
-              <BreadcrumbLink as={NavLink} to="/contacts">
-                Contacts
-              </BreadcrumbLink>
-            </b>
-          </BreadcrumbItem>
+          {isLoggedIn ?? istGetingCurentUser ? (
+            <BreadcrumbItem fontSize="28px" color="rgb(106, 17, 145)">
+              <b>
+                <BreadcrumbLink as={NavLink} to="/contacts">
+                  Contacts
+                </BreadcrumbLink>
+              </b>
+            </BreadcrumbItem>
+          ) : null}
         </Breadcrumb>
 
         {match ? <Button onClick={onOpen}>Add contact</Button> : null}
@@ -58,14 +61,15 @@ export function Nav() {
           onClose={onClose}
           children={<FormAddContacts />}
         />
-
-        {isLoggedIn ? (
-          <UserMenu />
-        ) : (
-          <LinkNav as={NavLink} to="/authorization">
-            Authorization
-          </LinkNav>
-        )}
+        {!istGetingCurentUser ? (
+          isLoggedIn ? (
+            <UserMenu />
+          ) : (
+            <LinkNav as={NavLink} to="/authorization">
+              Authorization
+            </LinkNav>
+          )
+        ) : null}
       </Flex>
     </Flex>
   );

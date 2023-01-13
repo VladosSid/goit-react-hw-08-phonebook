@@ -3,7 +3,11 @@ import { lazy, useEffect } from 'react';
 
 import SharedLayout from './Shared';
 import { authOperations } from 'redux/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { ProtectedRoute } from 'components/Routs';
+import { PublicRoute } from 'components/Routs';
+import { authSelectors } from 'redux/auth';
 
 const Home = lazy(() => import('pages/Home'));
 const Contacts = lazy(() => import('pages/Contacts'));
@@ -13,6 +17,7 @@ const LogIn = lazy(() => import('./Authorization/LogIn'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const istGetingCurentUser = useSelector(authSelectors.getGetingCurentUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -20,16 +25,33 @@ export const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/authorization" element={<Authorization />}>
-            <Route path="SingIn" element={<SingIn />} />
-            <Route path="LogIn" element={<LogIn />} />
+      {istGetingCurentUser ? null : (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route
+              path="/contacts"
+              element={
+                <ProtectedRoute redirectTo={'/authorization'}>
+                  <Contacts />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/authorization"
+              element={
+                <PublicRoute restricted redirectTo="/contacts">
+                  <Authorization />
+                </PublicRoute>
+              }
+            >
+              <Route path="SingIn" element={<SingIn />} />
+              <Route path="LogIn" element={<LogIn />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      )}
     </>
   );
 };

@@ -9,7 +9,6 @@ export function UserMenu() {
 
   const handleLogOut = e => {
     e.preventDefault();
-    console.log('LogOut User');
     despatch(authOperations.logOut());
   };
 
