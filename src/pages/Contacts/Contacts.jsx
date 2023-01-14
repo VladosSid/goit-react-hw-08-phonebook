@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import EmailInput from 'components/Authorization/EmailInput';
 
-import ContactItems from 'components/ContactsItem';
+import ContactItems from 'components/ContactsItem/ContactItem';
 
 export function Contacts() {
   const dispatch = useDispatch();
