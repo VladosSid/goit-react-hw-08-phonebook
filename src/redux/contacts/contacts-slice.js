@@ -9,6 +9,11 @@ const initialState = {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
+  reducers: {
+    clearContacts(state, action) {
+      state.contacts = action.payload;
+    },
+  },
   extraReducers: {
     [contactsOperations.fetchContacts.fulfilled](state, action) {
       state.contacts = action.payload;
@@ -35,4 +40,5 @@ const contactsSlice = createSlice({
   },
 });
 
+export const { clearContacts } = contactsSlice.actions;
 export default contactsSlice.reducer;

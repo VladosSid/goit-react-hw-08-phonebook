@@ -2,14 +2,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Text, Button, Flex } from '@chakra-ui/react';
 
 import { authSelectors, authOperations } from 'redux/auth';
+import { clearContacts } from 'redux/contacts/contacts-slice';
 
 export function UserMenu() {
-  const despatch = useDispatch();
+  const dispatch = useDispatch();
   const userEmail = useSelector(authSelectors.getUserEmail);
 
   const handleLogOut = e => {
     e.preventDefault();
-    despatch(authOperations.logOut());
+    dispatch(authOperations.logOut());
+    dispatch(clearContacts([]));
   };
 
   return (

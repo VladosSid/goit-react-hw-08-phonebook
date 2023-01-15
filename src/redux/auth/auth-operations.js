@@ -46,6 +46,7 @@ const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/logout');
     token.set(data.token);
+
     Notiflix.Notify.success(`Logout completed.`);
 
     return data;
