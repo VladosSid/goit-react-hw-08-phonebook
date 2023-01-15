@@ -50,28 +50,30 @@ export function Contacts() {
         Contacts List
       </Heading>
       <OrderedList display="flex" flexDirection="column" gap="10px">
-        {contacts !== []
-          ? contacts
-              .filter(contact =>
-                contact.name.toLowerCase().includes(search.toLocaleLowerCase())
-              )
-              .map(({ name, number, id }) => (
-                <ListItem
-                  display="flex"
-                  justifyContent="space-between"
-                  direction="row"
-                  gap="20px"
-                  key={id}
-                >
-                  <ContactItems
-                    name={name}
-                    number={number}
-                    id={id}
-                    remove={removeContacts}
-                  />
-                </ListItem>
-              ))
-          : null}
+        {contacts.length !== 0 ? (
+          contacts
+            .filter(contact =>
+              contact.name.toLowerCase().includes(search.toLocaleLowerCase())
+            )
+            .map(({ name, number, id }) => (
+              <ListItem
+                display="flex"
+                justifyContent="space-between"
+                direction="row"
+                gap="20px"
+                key={id}
+              >
+                <ContactItems
+                  name={name}
+                  number={number}
+                  id={id}
+                  remove={removeContacts}
+                />
+              </ListItem>
+            ))
+        ) : (
+          <p>No contacts</p>
+        )}
       </OrderedList>
     </Flex>
   );

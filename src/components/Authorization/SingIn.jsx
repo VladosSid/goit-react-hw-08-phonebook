@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Heading, FormControl, Button, FormLabel } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
+import Notiflix from 'notiflix';
 
 import { authOperations } from 'redux/auth';
 
@@ -37,13 +38,11 @@ export function SingIn() {
             dispatch(authOperations.register(user));
             return;
           }
-          console.log(
-            'Не верный формат данных!!! Пароль должен быть 7+ символов, пароли должны совпадать!!!'
-          );
+          Notiflix.Notify.warning('Invalid data format!!!');
         });
       return;
     }
-    console.log('Пароли не совпадают!!!');
+    Notiflix.Notify.failure('Passwords do not match!!!');
   };
 
   return (
