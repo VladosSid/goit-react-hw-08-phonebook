@@ -50,53 +50,52 @@ export function SingIn() {
       <Heading as="h2" size="xl">
         SingIn
       </Heading>
-      <FormControl>
-        <form onSubmit={submitUser}>
-          <FormLabel>Name</FormLabel>
-          <EmailInput
-            onChange={setName}
-            value={name}
-            name={'Name'}
-            variant={'filled'}
-          />
 
-          <FormLabel>Email</FormLabel>
-          <EmailInput
-            onChange={setEmail}
-            value={email}
-            name={'email'}
-            variant={'outline'}
-          />
+      <form onSubmit={submitUser}>
+        <FormLabel>Name</FormLabel>
+        <EmailInput
+          onChange={setName}
+          value={name}
+          name={'Name'}
+          variant={'filled'}
+        />
 
-          <FormLabel>Password</FormLabel>
-          <PasswordInput
-            onChange={setPassword}
-            name={'password'}
-            value={password}
-            variant={'flushed'}
-            type={'password'}
-            show={true}
-          />
+        <FormLabel>Email</FormLabel>
+        <EmailInput
+          onChange={setEmail}
+          value={email}
+          name={'email'}
+          variant={'outline'}
+        />
 
-          <FormLabel>Password</FormLabel>
-          <PasswordInput
-            onChange={setPasswordCheck}
-            name={'passwordCheck'}
-            value={passwordCheck}
-            variant={'unstyled'}
-            type={'password'}
-            show={true}
-          />
+        <FormLabel>Password</FormLabel>
+        <PasswordInput
+          onChange={setPassword}
+          name={'password'}
+          value={password}
+          variant={'flushed'}
+          type={'password'}
+          show={true}
+        />
 
-          <Button
-            // disabled={passwordCheck === '' ?? (password === '' && 'disabled')}
-            // tipe="submit"
-            type="submit"
-          >
-            SingIn
-          </Button>
-        </form>
-      </FormControl>
+        <FormLabel>Password</FormLabel>
+        <PasswordInput
+          onChange={setPasswordCheck}
+          name={'passwordCheck'}
+          value={passwordCheck}
+          variant={'unstyled'}
+          type={'password'}
+          show={true}
+        />
+
+        <Button
+          // disabled={passwordCheck === '' ?? (password === '' && 'disabled')}
+          // tipe="submit"
+          type="submit"
+        >
+          SingIn
+        </Button>
+      </form>
     </>
   );
 }

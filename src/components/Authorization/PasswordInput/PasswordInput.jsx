@@ -21,29 +21,27 @@ export const PasswordInput = ({
 
   return (
     <>
-      <FormLabel>
-        <InputGroup size="md">
-          <Input
-            value={value}
-            onChange={e => {
-              onChange(e.target.value);
-            }}
-            type={showPass ? 'text' : `${type}`}
-            placeholder={`Enter ${name}`}
-            variant={variant}
-            size="md"
-            name={name}
-          />
+      <InputGroup size="md">
+        <Input
+          value={value}
+          onChange={e => {
+            onChange(e.target.value);
+          }}
+          type={showPass ? 'text' : `${type}`}
+          placeholder={`Enter ${name}`}
+          variant={variant}
+          size="md"
+          name={name}
+        />
 
-          <InputRightElement width="4.5rem">
-            {show ? (
-              <Button h="1.75rem" size="sm" onClick={handleClickPass}>
-                {showPass ? 'Hide' : 'Show'}
-              </Button>
-            ) : null}
-          </InputRightElement>
-        </InputGroup>
-      </FormLabel>
+        <InputRightElement width="4.5rem">
+          {show ? (
+            <Button h="1.75rem" size="sm" onClick={handleClickPass}>
+              {showPass ? 'Hide' : 'Show'}
+            </Button>
+          ) : null}
+        </InputRightElement>
+      </InputGroup>
     </>
   );
 };

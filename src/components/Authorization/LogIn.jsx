@@ -45,34 +45,36 @@ export function LogIn() {
       <Heading as="h2" size="xl">
         LogIn
       </Heading>
-      <FormControl>
-        <form onSubmit={submitUser}>
-          <FormLabel>Email</FormLabel>
-          <EmailInput
-            onChange={setEmail}
-            value={email}
-            name={'email'}
-            variant={'filled'}
-          />
+      <form onSubmit={submitUser}>
+        {/* <FormControl> */}
+        <FormLabel>Email</FormLabel>
+        <EmailInput
+          onChange={setEmail}
+          value={email}
+          name={'email'}
+          variant={'filled'}
+        />
+        {/* </FormControl> */}
 
-          <FormLabel>Password</FormLabel>
-          <PasswordInput
-            onChange={setPassword}
-            name={'password'}
-            value={password}
-            variant={'unstyled'}
-            type={'password'}
-            show={true}
-          />
+        {/* <FormControl> */}
+        <FormLabel>Password</FormLabel>
+        <PasswordInput
+          onChange={setPassword}
+          name={'password'}
+          value={password}
+          variant={'unstyled'}
+          type={'password'}
+          show={true}
+        />
+        {/* </FormControl> */}
 
-          <Button
-            type="submit"
-            disabled={password === '' ?? (email === '' && 'disabled')}
-          >
-            SingIn
-          </Button>
-        </form>
-      </FormControl>
+        <Button
+          type="submit"
+          disabled={password === '' ?? (email === '' && 'disabled')}
+        >
+          SingIn
+        </Button>
+      </form>
     </>
   );
 }
