@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Heading, FormControl, Button, FormLabel } from '@chakra-ui/react';
+import { Heading, Button, FormLabel } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import Notiflix from 'notiflix';

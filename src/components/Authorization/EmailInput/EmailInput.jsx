@@ -1,4 +1,4 @@
-import { FormLabel, Input } from '@chakra-ui/react';
+import { Input } from '@chakra-ui/react';
 
 export const EmailInput = ({ onChange, value, name, variant }) => {
   return (
