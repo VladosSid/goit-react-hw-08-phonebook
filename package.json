@@ -2,7 +2,6 @@
   "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://VladosSid.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@chakra-ui/react": "^2.4.6",
     "@chakra-ui/theme-tools": "^2.0.16",
